@@ -1,0 +1,10 @@
+#!/bin/bash
+set -o errexit
+set -o pipefail
+set -o nounset
+
+# Waiting for the database
+python manage.py wait_for_db
+
+# Run the startup script
+exec /start

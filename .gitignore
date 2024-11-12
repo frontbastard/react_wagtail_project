@@ -3,8 +3,8 @@ staticfiles/*
 .idea/
 .vscode/
 *.iml
-.env
-.env.test
+.env/*
+!.env/.env.dev.sample
 .DS_Store
 .venv/
 .pytest_cache/
