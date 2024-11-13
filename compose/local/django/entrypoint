@@ -6,5 +6,8 @@ set -o nounset
 # Waiting for the database
 python manage.py wait_for_db
 
+# Create superuser
+python manage.py create_superuser
+
 # Run the startup script
 exec /start
