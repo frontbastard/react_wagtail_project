@@ -3,8 +3,11 @@ from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from taggit.models import Tag as TaggitTag, TaggedItemBase
 from wagtail.admin.panels import FieldPanel, InlinePanel
+from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.snippets.models import register_snippet
+
+from blog.blocks import BodyBlock
 
 
 class BlogPage(Page):
@@ -20,12 +23,15 @@ class PostPage(Page):
         related_name="+",
     )
 
+    body = StreamField(BodyBlock(), blank=True, use_json_field=True)
+
     tags = ClusterTaggableManager(through="blog.PostPageTag", blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("header_image"),
         InlinePanel("categories", label="category"),
         FieldPanel("tags"),
+        FieldPanel("body"),
     ]
 
 
